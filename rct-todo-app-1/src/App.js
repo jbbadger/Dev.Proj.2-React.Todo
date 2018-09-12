@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ToDo from './components/ToDo.js'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      task: [{descriptor: "eat", isDone: true},
+             {descriptor: "sleep", isDone: false}]
+    };
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <ul>
+          {this.state.task.map((item, index) =>
+           <ToDo key={index} descriptor={item.descriptor} isDone={item.isDone} />
+         )}
+        </ul>
       </div>
     );
   }
