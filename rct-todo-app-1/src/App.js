@@ -10,12 +10,20 @@ class App extends Component {
              {descriptor: "sleep", isDone: false}]
     };
   }
+
+  toggleComplete(index){
+    const newTasks = this.state.task.slice();
+    const nTask = newTasks[index];
+    nTask.isDone = nTask.isDone ? false : true;
+    this.setState({newTasks: newTasks});
+  }
+  
   render() {
     return (
       <div className="App">
         <ul>
           {this.state.task.map((item, index) =>
-           <ToDo key={index} descriptor={item.descriptor} isDone={item.isDone} />
+           <ToDo key={index} descriptor={item.descriptor} isDone={item.isDone} toggleComplete={() => this.toggleComplete(index)} />
          )}
         </ul>
       </div>
