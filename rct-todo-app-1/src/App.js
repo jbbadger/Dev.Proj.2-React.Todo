@@ -31,12 +31,18 @@ class App extends Component {
     console.log("change made");
   }
 
+  deleteTask(item){
+    var stask = this.state.task;
+    var filterTask = stask.filter((Nitem) => Nitem !== item);
+    this.setState({ task: filterTask });
+  }
+
   render() {
     return (
       <div className="App">
         <ul>
           {this.state.task.map((item, index) =>
-           <ToDo key={index} descriptor={item.descriptor} isDone={item.isDone} toggleComplete={() => this.toggleComplete(index)} />
+           <ToDo key={index} descriptor={item.descriptor} isDone={item.isDone} toggleComplete={() => this.toggleComplete(index)} deleteTask={() => this.deleteTask(item)} />
          )}
         </ul>
         <form onSubmit={ (e) => this.doSubmit(e) }>
